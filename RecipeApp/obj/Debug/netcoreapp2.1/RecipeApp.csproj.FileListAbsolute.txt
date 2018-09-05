@@ -1,0 +1,14 @@
+D:\VS Projects\repos\RecipeApp\RecipeApp\bin\Debug\netcoreapp2.1\RecipeApp.deps.json
+D:\VS Projects\repos\RecipeApp\RecipeApp\bin\Debug\netcoreapp2.1\RecipeApp.runtimeconfig.json
+D:\VS Projects\repos\RecipeApp\RecipeApp\bin\Debug\netcoreapp2.1\RecipeApp.runtimeconfig.dev.json
+D:\VS Projects\repos\RecipeApp\RecipeApp\bin\Debug\netcoreapp2.1\RecipeApp.dll
+D:\VS Projects\repos\RecipeApp\RecipeApp\bin\Debug\netcoreapp2.1\RecipeApp.pdb
+D:\VS Projects\repos\RecipeApp\RecipeApp\obj\Debug\netcoreapp2.1\RecipeApp.csprojAssemblyReference.cache
+D:\VS Projects\repos\RecipeApp\RecipeApp\obj\Debug\netcoreapp2.1\RecipeApp.csproj.CoreCompileInputs.cache
+D:\VS Projects\repos\RecipeApp\RecipeApp\obj\Debug\netcoreapp2.1\RecipeApp.RazorAssemblyInfo.cache
+D:\VS Projects\repos\RecipeApp\RecipeApp\obj\Debug\netcoreapp2.1\RecipeApp.RazorAssemblyInfo.cs
+D:\VS Projects\repos\RecipeApp\RecipeApp\obj\Debug\netcoreapp2.1\RecipeApp.AssemblyInfoInputs.cache
+D:\VS Projects\repos\RecipeApp\RecipeApp\obj\Debug\netcoreapp2.1\RecipeApp.AssemblyInfo.cs
+D:\VS Projects\repos\RecipeApp\RecipeApp\obj\Debug\netcoreapp2.1\RecipeApp.RazorTargetAssemblyInfo.cache
+D:\VS Projects\repos\RecipeApp\RecipeApp\obj\Debug\netcoreapp2.1\RecipeApp.dll
+D:\VS Projects\repos\RecipeApp\RecipeApp\obj\Debug\netcoreapp2.1\RecipeApp.pdb

@@ -1,0 +1,24 @@
+<div class="col-md-6">
+  <h2> Recipes Details</h2>
+  <!-- <button class="btn btn-danger" (click)="addRecipes()"> Add Recipes</button> -->
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="hidden"></th>
+      <th>RecipeName</th>
+      <th>Ingredients</th>
+      <th>Recipe-Steps</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let recipe of recipes">
+      <td class="hidden"></td>
+      <td>{{recipe.recipeName}}</td>
+      <td>{{recipe.ingredientName}}</td>
+      <td>{{recipe.instructions}}</td>
+      <!-- <td><button class="btn btn-danger" (click)="deleteRecipes(recipe)"> Delete</button>
+        <button class="btn btn-danger" (click)="editRecipes(recipe)" style="margin-left: 20px;"> Edit</button></td> -->
+    </tr>
+    </tbody>
+  </table>
+
