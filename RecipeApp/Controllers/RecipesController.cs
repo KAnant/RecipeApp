@@ -23,21 +23,22 @@ namespace RecipeApp.Controllers
 
         [HttpGet]
         [Route("getRecipes")]
-        public IList<RecipeModel> GetRecipes()
+        public ActionResult<IQueryable<RecipeModel>> GetRecipes()
         {
             var results = (from r in _context.Recipes
                            join i in _context.Ingredients on r.RecipeId equals i.RecipeId
                            join rt in _context.Recipe_Steps on r.RecipeId equals rt.RecipeId
-                          // where r.RecipeId == id
                            select new RecipeModel()
                            {
                                RecipeId = r.RecipeId,
-                               RecipeName= r.RecipeName,
+                               RecipeName = r.RecipeName,
+                               IngredientId = i.IngredientId,
                                IngredientName = i.IngredientName,
-                               Instructions= rt.Instructions
-                             
+                               Step_no = rt.Step_no,
+                               Instructions = rt.Instructions
                            }
                          );
+
             if (results == null)
             {
                 return NotFound();
@@ -73,7 +74,6 @@ namespace RecipeApp.Controllers
 
         [HttpPut]
         [Route("updateRecipes/{id}")]
-
         public async Task<IActionResult> UpdateRecipes([FromRoute] int id, [FromBody] Recipes recipes)
         {
             if (!ModelState.IsValid)
@@ -89,7 +89,7 @@ namespace RecipeApp.Controllers
             //{
             //    RecipeId = recipes.RecipeId,
             //    RecipeName = recipes.RecipeName
-              
+
             //};
 
             //_context.Update(recipe);
