@@ -8,11 +8,11 @@ import {ListRecipesComponent} from './recipes/list-recipes/list-recipes.componen
 import { RecipesComponent } from './recipes/recipes.component';
 
 const routes: Routes = [
-  {path: 'recipes', component: RecipesComponent},
+  //{path: 'recipes', component: RecipesComponent},
   {path: 'add-recipes', component: AddRecipesComponent},
   {path: 'edit-recipes', component: EditRecipesComponent},
   {path: 'list-recipes', component: ListRecipesComponent},
-  {path: '',component: RecipesComponent}
+  {path: '',component: ListRecipesComponent}
 ];
 
 export const routing= RouterModule.forRoot(routes);

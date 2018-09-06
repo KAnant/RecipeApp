@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class RecipesService {
 
   constructor(private http: HttpClient) { }
-
+  selectedRecipe: Recipes[];
 
   getRecipes(): Observable<Recipes[]> {
     const httpOptions = {
@@ -23,7 +23,7 @@ export class RecipesService {
   }
 
 
-  getRecipesById(id: string) {
+  getRecipesById(id: number) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -42,7 +42,34 @@ export class RecipesService {
     };
 
     var addRecipe = this.http.post('https://localhost:44335/api/recipes/createRecipes',rec,httpOptions);
+    return addRecipe;
   }
 
+  updateRecipes(id: number) {
+    const httpOptions = {
+      headers: new HttpHeaders ({
+        'Content-Type': 'application/json',
+      })
+    };
+
+    var updateRecipe = this.http.put('https://localhost:44335/api/recipes/updateRecipes'+id,httpOptions);
+    return updateRecipe;
+  }
+
+  deleteRecipes(id: number) {
+    const httpOptions = {
+      headers: new HttpHeaders ({
+        'Content-Type': 'application/json',
+      })
+    };
+
+    var deleteRecipe = this.http.delete('https://localhost:44335/api/recipes/deleteRecipes'+id,httpOptions);
+    return deleteRecipe;
+  }
+
+  errorHandler(error: Response) { 
+    console.log(error); 
+    return Observable.throw(error); 
+}  
  
 }

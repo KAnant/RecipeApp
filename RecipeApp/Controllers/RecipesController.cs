@@ -72,6 +72,21 @@ namespace RecipeApp.Controllers
             return Ok(recipes);
         }
 
+        [HttpPost]
+        [Route("createRecipes")]
+        public async Task<IActionResult> CreateRecipes([FromBody] Recipes recipes)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _context.Recipes.Add(recipes);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetRecipes", new { id = recipes.RecipeId }, recipes);
+        }
+
         [HttpPut]
         [Route("updateRecipes/{id}")]
         public async Task<IActionResult> UpdateRecipes([FromRoute] int id, [FromBody] Recipes recipes)
@@ -112,21 +127,6 @@ namespace RecipeApp.Controllers
             }
 
             return NoContent();
-        }
-
-        [HttpPost]
-        [Route("createRecipes")]
-        public async Task<IActionResult> CreateRecipes([FromBody] Recipes recipes)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            _context.Recipes.Add(recipes);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetRecipes", new { id = recipes.RecipeId }, recipes);
         }
 
         [HttpDelete]
