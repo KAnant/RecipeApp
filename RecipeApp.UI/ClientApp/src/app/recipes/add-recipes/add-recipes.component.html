@@ -1,20 +1,20 @@
 <div class="container">
   <h3>Add a recipe</h3>
-  <form class="rec-form" #recForm="ngForm" (ngSubmit)="onSubmit(rec-form)">
-    <input type="hidden" class="form-control" [(ngModel)]="recipe.recipeId" name="recipeId">
+  <form name="rec-form" #recForm="ngForm" (ngSubmit)="onSubmit()">
+    <input type="hidden" class="form-control" [(ngModel)]="recipes.recipeId" #recipeId="ngModel" name="recipeId">
     <div class="form-group">
       <label for="recipeName">Recipe Name:</label>
-      <input type="text" class="form-control" [(ngModel)]="recipe.recipeName" name="recipeName" required>
+      <input type="text" class="form-control" [(ngModel)]="recipes.recipeName" #recipeName="ngModel" name="recipeName">
     </div>
     <div class="form-group">
       <label for="ingredientName">Ingredients Name:</label>
-      <input type="text" class="form-control" [(ngModel)]="recipe.ingredientName" name="ingredientName">
+      <input type="text" class="form-control" [(ngModel)]="recipes.ingredientName" #ingredientName="ngModel" name="ingredientName">
     </div>
     <div class="form-group">
       <label for="instructions">Instructions:</label>
-      <input type="text" class="form-control" [(ngModel)]="recipe.instructions" name="instructions">
+      <input type="text" class="form-control" [(ngModel)]="recipes.instructions" #instructions="ngModel" name="instructions">
     </div>
-    <button type="button" (click)="onSubmit()" class="btn btn-success">Add</button>&nbsp;&nbsp;
+    <button type="submit" class="btn btn-success">Add</button>&nbsp;&nbsp;
     <button type="reset" class="btn btn-default" value="reset">Reset</button>
   </form>
 </div>

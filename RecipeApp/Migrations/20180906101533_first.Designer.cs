@@ -9,8 +9,8 @@ using RecipeApp.Data;
 namespace RecipeApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180901094912_First")]
-    partial class First
+    [Migration("20180906101533_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,11 @@ namespace RecipeApp.Migrations
 
                     b.Property<string>("IngredientName");
 
+                    b.Property<int>("RecipeId");
+
                     b.HasKey("IngredientId");
+
+                    b.HasIndex("RecipeId");
 
                     b.ToTable("Ingredients");
                 });
@@ -41,7 +45,11 @@ namespace RecipeApp.Migrations
 
                     b.Property<string>("Instructions");
 
+                    b.Property<int>("RecipeId");
+
                     b.HasKey("Step_no");
+
+                    b.HasIndex("RecipeId");
 
                     b.ToTable("Recipe_Steps");
                 });
@@ -57,6 +65,22 @@ namespace RecipeApp.Migrations
                     b.HasKey("RecipeId");
 
                     b.ToTable("Recipes");
+                });
+
+            modelBuilder.Entity("RecipeApp.Models.Ingredients", b =>
+                {
+                    b.HasOne("RecipeApp.Models.Recipes", "Recipes")
+                        .WithMany("Ingredients")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RecipeApp.Models.Recipe_Steps", b =>
+                {
+                    b.HasOne("RecipeApp.Models.Recipes", "Recipes")
+                        .WithMany("Recipe_Steps")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

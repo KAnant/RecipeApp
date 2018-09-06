@@ -89,45 +89,59 @@ namespace RecipeApp.Controllers
 
         [HttpPut]
         [Route("updateRecipes/{id}")]
-        public async Task<IActionResult> UpdateRecipes([FromRoute] int id, [FromBody] Recipes recipes)
+
+        public IActionResult UpdateRecipes (int id, Recipes recipes)
         {
-            if (!ModelState.IsValid)
+            var recipe = _context.Recipes.Find(id);
+            if(recipe == null)
             {
-                return BadRequest(ModelState);
+                return NotFound();
             }
-
-            if (id != recipes.RecipeId)
-            {
-                return BadRequest();
-            }
-            //var recipe = new Recipes
-            //{
-            //    RecipeId = recipes.RecipeId,
-            //    RecipeName = recipes.RecipeName
-
-            //};
-
-            //_context.Update(recipe);
-            _context.Entry(recipes).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RecipesExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            recipe.RecipeId = recipes.RecipeId;
+            recipe.RecipeName = recipes.RecipeName;
+            _context.Recipes.Update(recipe);
+            _context.SaveChanges();
             return NoContent();
         }
+        //public async Task<IActionResult> UpdateRecipes([FromRoute] int id, [FromBody] Recipes recipes)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    if (id != recipes.RecipeId)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    //var recipe = new Recipes
+        //    //{
+        //    //    RecipeId = recipes.RecipeId,
+        //    //    RecipeName = recipes.RecipeName
+
+        //    //};
+
+        //    //_context.Update(recipe);
+        //    _context.Entry(recipes).State = EntityState.Modified;
+
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!RecipesExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+
+        //    return NoContent();
+        //}
 
         [HttpDelete]
         [Route("deleteRecipes/{id}")]
