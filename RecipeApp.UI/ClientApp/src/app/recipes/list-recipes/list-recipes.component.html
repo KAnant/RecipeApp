@@ -17,7 +17,7 @@
           <td>{{recipe.recipeName}}</td>
           <td>{{recipe.ingredientName}}</td>
           <td>{{recipe.instructions}}</td>
-          <td><button class="btn btn-default" (click)="deleteRecipes(recipe)"> Delete</button>
+          <td><button class="btn btn-default" (click)="deleteRecipes(recipe.recipeId)"> Delete</button>
             <a routerLink="edit-recipes"><button class="btn btn-default edit-btn" (click)="editRecipes(recipe)"> Edit</button></a></td>
         </tr>
       </tbody>

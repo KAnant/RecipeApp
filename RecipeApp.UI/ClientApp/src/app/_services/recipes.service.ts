@@ -18,7 +18,7 @@ export class RecipesService {
       })
     };
 
-    var recipes = this.http.get<Recipes[]>('https://localhost:44335/api/recipes/getRecipes', httpOptions);
+    var recipes = this.http.get<Recipes[]>('http://localhost:8000/api/Recipes/', httpOptions);
     return recipes;
   }
 
@@ -30,7 +30,7 @@ export class RecipesService {
       })
     };
 
-    var recipesById = this.http.get<Recipes>('https://localhost:44335/api/recipes/getRecipesById/'+id, httpOptions);
+    var recipesById = this.http.get<Recipes>('http://localhost:8000/api/Recipes/'+id, httpOptions);
     return recipesById;
   }
 
@@ -41,7 +41,7 @@ export class RecipesService {
       })
     };
 
-    var addRecipe = this.http.post('https://localhost:44335/api/recipes/createRecipes',rec,httpOptions);
+    var addRecipe = this.http.post('http://localhost:8000/api/Recipes/',rec,httpOptions);
     return addRecipe;
   }
 
@@ -52,7 +52,7 @@ export class RecipesService {
       })
     };
 
-    var updateRecipe = this.http.put('https://localhost:44335/api/recipes/updateRecipes'+id,httpOptions);
+    var updateRecipe = this.http.put('http://localhost:8000/api/Recipes/'+id,httpOptions);
     return updateRecipe;
   }
 
@@ -63,7 +63,7 @@ export class RecipesService {
       })
     };
 
-    var deleteRecipe = this.http.delete('https://localhost:44335/api/recipes/deleteRecipes'+id,httpOptions);
+    var deleteRecipe = this.http.delete('http://localhost:8000/api/Recipes/'+id,httpOptions);
     return deleteRecipe;
   }
 

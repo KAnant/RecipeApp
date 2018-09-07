@@ -27,12 +27,12 @@ export class ListRecipesComponent implements OnInit {
     //this.recipeService.selectedRecipe= Object.assign({},rec) ;;
   }
 
-  deleteRecipes(recipeid: number) {
+  deleteRecipes(id: number) {
     if (confirm('Are you sure to delete this record ?') == true) {
-      this.recipeService.deleteRecipes(recipeid)
-        .subscribe(x => {
+      this.recipeService.deleteRecipes(id)
+        .subscribe(data => {
           this.recipeService.getRecipes();
-          this.toastr.warning("Deleted Successfully", "Employee Register");
+          this.toastr.warning("Deleted Successfully");
         })
     }
   }

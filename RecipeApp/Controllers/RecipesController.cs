@@ -22,7 +22,7 @@ namespace RecipeApp.Controllers
         }
 
         [HttpGet]
-        [Route("getRecipes")]
+        // [Route("getRecipes")]
         public ActionResult<IQueryable<RecipeModel>> GetRecipes()
         {
             var results = (from r in _context.Recipes
@@ -53,8 +53,8 @@ namespace RecipeApp.Controllers
             //}).ToList();
         }
 
-        [HttpGet]
-        [Route("getRecipesById/{id}")]
+        [HttpGet("{id}")]
+        //[Route("getRecipesById/{id}")]
         public async Task<IActionResult> GetRecipesById([FromRoute] int id)
         {
             if (!ModelState.IsValid)
@@ -73,7 +73,7 @@ namespace RecipeApp.Controllers
         }
 
         [HttpPost]
-        [Route("createRecipes")]
+       // [Route("createRecipes")]
         public async Task<IActionResult> CreateRecipes([FromBody] Recipes recipes)
         {
             if (!ModelState.IsValid)
@@ -87,10 +87,10 @@ namespace RecipeApp.Controllers
             return CreatedAtAction("GetRecipes", new { id = recipes.RecipeId }, recipes);
         }
 
-        [HttpPut]
-        [Route("updateRecipes/{id}")]
+        [HttpPut("{id}")]
+        //[Route("updateRecipes/{id}")]
 
-        public IActionResult UpdateRecipes (int id, Recipes recipes)
+        public IActionResult UpdateRecipes (int id,[FromBody] Recipes recipes)
         {
             var recipe = _context.Recipes.Find(id);
             if(recipe == null)
@@ -143,8 +143,8 @@ namespace RecipeApp.Controllers
         //    return NoContent();
         //}
 
-        [HttpDelete]
-        [Route("deleteRecipes/{id}")]
+        [HttpDelete("{id}")]
+        //[Route("deleteRecipes/{id}")]
         public async Task<IActionResult> DeleteRecipes([FromRoute] int id)
         {
             if (!ModelState.IsValid)

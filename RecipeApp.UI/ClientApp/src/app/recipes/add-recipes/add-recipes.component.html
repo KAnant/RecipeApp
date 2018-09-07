@@ -1,20 +1,24 @@
 <div class="container">
-  <h3>Add a recipe</h3>
-  <form name="rec-form" #recForm="ngForm" (ngSubmit)="onSubmit()">
-    <input type="hidden" class="form-control" [(ngModel)]="recipes.recipeId" #recipeId="ngModel" name="recipeId">
-    <div class="form-group">
-      <label for="recipeName">Recipe Name:</label>
-      <input type="text" class="form-control" [(ngModel)]="recipes.recipeName" #recipeName="ngModel" name="recipeName">
-    </div>
-    <div class="form-group">
-      <label for="ingredientName">Ingredients Name:</label>
-      <input type="text" class="form-control" [(ngModel)]="recipes.ingredientName" #ingredientName="ngModel" name="ingredientName">
-    </div>
-    <div class="form-group">
-      <label for="instructions">Instructions:</label>
-      <input type="text" class="form-control" [(ngModel)]="recipes.instructions" #instructions="ngModel" name="instructions">
-    </div>
-    <button type="submit" class="btn btn-success">Add</button>&nbsp;&nbsp;
-    <button type="reset" class="btn btn-default" value="reset">Reset</button>
-  </form>
+  <div class="col-md-6">
+    <h2 class="text-center">Add Recipe</h2>
+    <form [formGroup]="recForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="recipeName">Recipe Name:</label>
+        <input type="recipeName" formControlName="recipeName" placeholder="Recipe Name" name="recipeName" class="form-control" id="recipeName">
+      </div>
+
+      <div class="form-group">
+        <label for="ingredientName">Ingredient Name:</label>
+        <input formControlName="ingredientName" placeholder="Ingredient Name" name="ingredientName" class="form-control" id="ingredientName">
+      </div>
+
+      <div class="form-group">
+        <label for="instructions">Instructions:</label>
+        <input formControlName="instructions" placeholder="Instructions" name="instructions" class="form-control" id="instructions">
+      </div>
+
+      <button class="btn btn-success" type="submit">Add</button>&nbsp;&nbsp;
+      <button type="reset" class="btn btn-default" value="reset">Reset</button>
+    </form>
+  </div>
 </div>
