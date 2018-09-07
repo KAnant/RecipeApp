@@ -1,0 +1,20 @@
+$background_color_2: rgba(109, 118, 126, 0.5);
+
+.custom-container {
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.custom-footer {
+	flex: 0 0 50px;
+	margin-top: auto;
+}
+
+.footer {
+	overflow: hidden;
+	text-align: center;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 0px;
+	background-color: $background_color_2;
+}

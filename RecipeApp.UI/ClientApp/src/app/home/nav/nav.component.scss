@@ -1,0 +1,22 @@
+$background_color_1: #18BC9C;
+$background_color_2: rgba(41, 44, 47, 0.5);
+$color_1: white;
+
+
+.bg-dark {
+	background-color: $background_color_1 !important;
+}
+
+.navbar-toggler {
+    background-color: $background_color_2;
+}
+
+.navbar-dark {
+	.navbar-nav {
+		.nav-link {
+			&:hover {
+				color: $color_1;
+			}
+		}
+	}
+}
