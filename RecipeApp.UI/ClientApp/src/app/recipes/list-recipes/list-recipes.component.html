@@ -1,24 +1,25 @@
 <div class="container">
   <div class="col-md-6">
     <h2> Recipes Details</h2>
-    <a routerLink="add-recipes" class="btn btn-success"> Add Recipe</a>
+    <button type="button" class="btn btn-success" [routerLink]="['../add-recipes']"> Add Recipe</button>
     <table class="table table-striped">
       <thead>
         <tr>
-          <th style="visibility:collapse;">RecipeId</th>
+          <!-- <th style="visibility:collapse;">RecipeId</th> -->
           <th>RecipeName</th>
           <th>Ingredients</th>
           <th>Recipe-Steps</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let recipe of recipes">
-          <td style="visibility:collapse;">{{recipe.recipeId}}</td>
+          <!-- <td style="visibility:collapse;">{{recipe.recipeId}}</td> -->
           <td>{{recipe.recipeName}}</td>
           <td>{{recipe.ingredientName}}</td>
           <td>{{recipe.instructions}}</td>
           <td><button class="btn btn-default" (click)="deleteRecipes(recipe.recipeId)"> Delete</button>
-            <a routerLink="edit-recipes"><button class="btn btn-default edit-btn" (click)="editRecipes(recipe)"> Edit</button></a></td>
+          <button class="btn btn-default edit-btn" [routerLink]="['../edit-recipes']"> Edit</button></td>
         </tr>
       </tbody>
     </table>

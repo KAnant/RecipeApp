@@ -1,7 +1,7 @@
 <div class="container">
   <div class="col-md-6">
     <h2 class="text-center">Edit Recipe</h2>
-    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="editForm" #formRecipe (ngSubmit)="onSubmit(editForm.value)">
       <div class="form-group">
         <label for="recipeName">Recipe Name:</label>
         <input type="recipeName" formControlName="recipeName" placeholder="Recipe Name" name="recipeName" class="form-control" id="recipeName">

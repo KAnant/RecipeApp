@@ -10,6 +10,8 @@ export class RecipesService {
 
   constructor(private http: HttpClient) { }
   selectedRecipe: Recipes[];
+  recipes: Observable<Recipes[]>;  
+    newrecipe:Observable<Recipes>;
 
   getRecipes(): Observable<Recipes[]> {
     const httpOptions = {
@@ -34,16 +36,22 @@ export class RecipesService {
     return recipesById;
   }
 
-  createRecipes(rec: Recipes) {
-    const httpOptions = {
-      headers: new HttpHeaders ({
-        'Content-Type': 'application/json',
-      })
-    };
+  // createRecipes(rec: Recipes) {
+  //   const httpOptions = {
+  //     headers: new HttpHeaders ({
+  //       'Content-Type': 'application/json',
+  //     })
+  //   };
 
-    var addRecipe = this.http.post('http://localhost:8000/api/Recipes/',rec,httpOptions);
-    return addRecipe;
-  }
+  //   var addRecipe = this.http.post('http://localhost:8000/api/Recipes/',rec,httpOptions);
+  //   return addRecipe;
+  // }
+  createRecipes(rec:Recipes)  
+  {  
+    const headers = new HttpHeaders().set('content-type', 'application/json');  
+    var data = {RecipeNmae:rec.recipeName}  
+  return this.http.post<Recipes>('http://localhost:8000/api/Recipes/', data,{headers})  
+  }  
 
   updateRecipes(id: number) {
     const httpOptions = {

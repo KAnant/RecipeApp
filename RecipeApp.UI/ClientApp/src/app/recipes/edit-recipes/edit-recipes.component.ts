@@ -24,12 +24,29 @@ export class EditRecipesComponent implements OnInit {
     });
 
   }
-  onSubmit() {
-    alert("test")
-    this.recipeService.updateRecipes(this.editForm.value)
-      .subscribe(data => {
-        this.router.navigate(['list-recipes']);
-      });
-  }
+  onSubmit(formRecipe)  {
+    console.log(formRecipe);
+      
+    this.recipeService.updateRecipes(formRecipe)
+     .subscribe(
+       (data: any) => {
+         if (data === true) {
+           this.router.navigate(['list-recipes']);
+           this.toastr.success('Recipe successfully updated!');
+         } else {
+           this.toastr.error('Unable to update recipe!');
+           //this.loading = false;
+         }
+       });
+      //  error => {
+      //    // console.log(error)
+      //    //this.alertService.error(error);
+      //    this.toastr.error('Unable to update recipe!');
+      //    //this.loading = false;
+      //  }
+    
+    
+
+ }
 
 }

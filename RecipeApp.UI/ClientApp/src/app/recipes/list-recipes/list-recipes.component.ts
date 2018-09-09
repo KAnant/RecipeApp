@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Recipes } from '../../_models/recipes.model';
 import { RecipesService } from '../../_services/recipes.service';
 import { Router } from '@angular/router';
-import { ToastrService } from '../../../../node_modules/ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-recipes',
@@ -23,6 +23,11 @@ export class ListRecipesComponent implements OnInit {
       });
   }
 
+
+  // btnClick = function () {
+  //   this.router.navigateByUrl('/edit-recipes');
+  // };
+
   editRecipes(rec: Recipes) {
     //this.recipeService.selectedRecipe= Object.assign({},rec) ;;
   }
@@ -32,7 +37,7 @@ export class ListRecipesComponent implements OnInit {
       this.recipeService.deleteRecipes(id)
         .subscribe(data => {
           this.recipeService.getRecipes();
-          this.toastr.warning("Deleted Successfully");
+          this.toastr.success("Deleted Successfully");
         })
     }
   }
