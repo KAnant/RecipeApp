@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="col-md-6">
     <h2 class="text-center">Add Recipe</h2>
     <form [formGroup]="addForm" #formRecipe (ngSubmit)="onSubmit(addForm.value)">
@@ -22,4 +22,29 @@
       <button type="reset" class="btn btn-default" value="reset">Reset</button>
     </form>
   </div>
+</div> -->
+<div class="container">
+<h1>{{title}}</h1>
+<h3>Recipe</h3>
+<hr />
+<form [formGroup]="addForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+  <div class="form-group row"> <label class=" control-label col-md-12">Recipe Name</label>
+    <div class="col-md-4"> <input class="form-control" type="text" formControlName="recipeName"> </div>
+    <span class="text-danger" *ngIf="recipeName.invalid && formDir.submitted">
+      *
+    </span> </div>
+  <div class="form-group row"> <label class="control-label col-md-12">Ingredient Name</label>
+    <div class="col-md-4"> <input class="form-control" type="text" formControlName="ingredientName"></div> 
+      <span class="text-danger" *ngIf="ingredientName.invalid && formDir.submitted">
+      *
+    </span> </div>
+  <div class="form-group row"> <label class="control-label col-md-12">Instructions</label>
+    <div class="col-md-4"> <input class="form-control" type="text" formControlName="instructions"> </div>
+    <span class="text-danger" *ngIf="instructions.invalid && formDir.submitted">
+      *
+    </span> </div>
+  <div class="form-group"> <button type="submit" class="btn btn-default">Save</button>
+     <button class="btn" (click)="cancel()">Cancel</button>
+    </div>
+</form>
 </div>

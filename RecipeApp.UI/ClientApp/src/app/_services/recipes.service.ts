@@ -46,10 +46,10 @@ export class RecipesService {
   //   var addRecipe = this.http.post('http://localhost:8000/api/Recipes/',rec,httpOptions);
   //   return addRecipe;
   // }
-  createRecipes(rec:Recipes)  
+  createRecipes(recipes:any)  
   {  
     const headers = new HttpHeaders().set('content-type', 'application/json');  
-    var data = {RecipeNmae:rec.recipeName}  
+    var data = {RecipeNmae:recipes.recipeName}  
   return this.http.post<Recipes>('http://localhost:8000/api/Recipes/', data,{headers})  
   }  
 
