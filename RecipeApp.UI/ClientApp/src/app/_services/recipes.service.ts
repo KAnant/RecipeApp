@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Recipes} from '../_models/recipes.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Recipes } from '../_models/recipes.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,74 +10,69 @@ export class RecipesService {
 
   constructor(private http: HttpClient) { }
   selectedRecipe: Recipes[];
-  recipes: Observable<Recipes[]>;  
-    newrecipe:Observable<Recipes>;
+  recipes: Observable<Recipes[]>;
+  //newrecipe: Observable<Recipes>;
 
-  getRecipes(): Observable<Recipes[]> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      })
-    };
-
-    var recipes = this.http.get<Recipes[]>('http://localhost:8000/api/Recipes/', httpOptions);
-    return recipes;
+  getRecipes(){
+    
+  return this.http.get<Recipes>('http://localhost:8000/api/Recipes');
+  
   }
 
 
-  getRecipesById(id: number) {
+  getRecipesById(id: any) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       })
     };
 
-    var recipesById = this.http.get<Recipes>('http://localhost:8000/api/Recipes/'+id, httpOptions);
+    var recipesById = this.http.get<Recipes>('http://localhost:8000/api/Recipes/GetRecipesById/' + id, httpOptions);
     return recipesById;
   }
 
-  // createRecipes(rec: Recipes) {
+  createRecipes(rec): Observable<Recipes[]> {
+    return this.http.post<Recipes[]>('http://localhost:8000/api/Recipes', rec);
+
+  }
+
+
+  // updateRecipes(id: string) {
   //   const httpOptions = {
-  //     headers: new HttpHeaders ({
+  //     headers: new HttpHeaders({
   //       'Content-Type': 'application/json',
   //     })
   //   };
 
-  //   var addRecipe = this.http.post('http://localhost:8000/api/Recipes/',rec,httpOptions);
-  //   return addRecipe;
+  //   var updateRecipe = this.http.put<Recipes>('http://localhost:9000/api/Recipes/updateRecipes/' + id, httpOptions);
+  //   return updateRecipe;
   // }
-  createRecipes(recipes:any)  
-  {  
-    const headers = new HttpHeaders().set('content-type', 'application/json');  
-    var data = {RecipeNmae:recipes.recipeName}  
-  return this.http.post<Recipes>('http://localhost:8000/api/Recipes/', data,{headers})  
-  }  
 
-  updateRecipes(id: number) {
+  updateRecipes(recipe: Recipes) {
     const httpOptions = {
-      headers: new HttpHeaders ({
+      headers: new HttpHeaders({
         'Content-Type': 'application/json',
       })
     };
 
-    var updateRecipe = this.http.put('http://localhost:8000/api/Recipes/'+id,httpOptions);
-    return updateRecipe;
+    debugger
+    return this.http.put(`http://localhost:8000/api/Recipes/updateRecipes`, recipe, httpOptions);
   }
 
-  deleteRecipes(id: number) {
+  deleteRecipes(id: string) {
     const httpOptions = {
-      headers: new HttpHeaders ({
+      headers: new HttpHeaders({
         'Content-Type': 'application/json',
       })
     };
 
-    var deleteRecipe = this.http.delete('http://localhost:8000/api/Recipes/'+id,httpOptions);
+    var deleteRecipe = this.http.delete('http://localhost:8000/api/Recipes/' + id, httpOptions);
     return deleteRecipe;
   }
 
-  errorHandler(error: Response) { 
-    console.log(error); 
-    return Observable.throw(error); 
-}  
- 
+  errorHandler(error: Response) {
+    console.log(error);
+    return Observable.throw(error);
+  }
+
 }

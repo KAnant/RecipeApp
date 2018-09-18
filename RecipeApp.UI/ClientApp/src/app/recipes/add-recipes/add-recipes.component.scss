@@ -1,4 +1,11 @@
+$color_1:#18BC9C !important;
+$color_2:white;
+
+.btn-default {
+    background-color: $color_1;
+    color: $color_2;
+}
+ 
 .btn {
-    width:120px;
-    margin:10px;
+    width: 70px;
 }

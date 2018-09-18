@@ -14,48 +14,23 @@ namespace RecipeApp.Controllers
     [ApiController]
     public class RecipesController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly RecipeAppDbContext _context;
 
-        public RecipesController(ApplicationDbContext context)
+        public RecipesController(RecipeAppDbContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        // [Route("getRecipes")]
-        public ActionResult<IQueryable<RecipeModel>> GetRecipes()
+        //[Route("getRecipes")]
+        public ActionResult<List<Recipes>> GetRecipes()
         {
-            var results = (from r in _context.Recipes
-                           join i in _context.Ingredients on r.RecipeId equals i.RecipeId
-                           join rt in _context.Recipe_Steps on r.RecipeId equals rt.RecipeId
-                           select new RecipeModel()
-                           {
-                               RecipeId = r.RecipeId,
-                               RecipeName = r.RecipeName,
-                               IngredientId = i.IngredientId,
-                               IngredientName = i.IngredientName,
-                               Step_no = rt.Step_no,
-                               Instructions = rt.Instructions
-                           }
-                         );
-
-            if (results == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(results);
-            //return _context.Recipes.Select(r => new RecipesDTO
-            //{
-            //    RecipeName = r.RecipeName,
-            //    Ingredients = r.Ingredients.ToList(),
-            //    Recipe_Steps = r.Recipe_Steps.ToList()
-            //}).ToList();
+            return _context.Recipes.ToList();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetRecipesById/{id}")]
         //[Route("getRecipesById/{id}")]
-        public async Task<IActionResult> GetRecipesById([FromRoute] int id)
+        public async Task<IActionResult> GetRecipesById([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
@@ -71,9 +46,8 @@ namespace RecipeApp.Controllers
 
             return Ok(recipes);
         }
-
         [HttpPost]
-       // [Route("createRecipes")]
+        //[Route("createRecipes")]
         public async Task<IActionResult> CreateRecipes([FromBody] Recipes recipes)
         {
             if (!ModelState.IsValid)
@@ -87,65 +61,19 @@ namespace RecipeApp.Controllers
             return CreatedAtAction("GetRecipes", new { id = recipes.RecipeId }, recipes);
         }
 
-        [HttpPut("{id}")]
-        //[Route("updateRecipes/{id}")]
-
-        public IActionResult UpdateRecipes (int id,[FromBody] Recipes recipes)
+        [HttpPut]
+        [Route("updateRecipes")]
+        public IActionResult UpdateRecipes([FromBody] Recipes recipe)
         {
-            var recipe = _context.Recipes.Find(id);
-            if(recipe == null)
-            {
-                return NotFound();
-            }
-            recipe.RecipeId = recipes.RecipeId;
-            recipe.RecipeName = recipes.RecipeName;
             _context.Recipes.Update(recipe);
             _context.SaveChanges();
-            return NoContent();
+            return Ok(recipe);
         }
-        //public async Task<IActionResult> UpdateRecipes([FromRoute] int id, [FromBody] Recipes recipes)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
 
-        //    if (id != recipes.RecipeId)
-        //    {
-        //        return BadRequest();
-        //    }
-        //    //var recipe = new Recipes
-        //    //{
-        //    //    RecipeId = recipes.RecipeId,
-        //    //    RecipeName = recipes.RecipeName
-
-        //    //};
-
-        //    //_context.Update(recipe);
-        //    _context.Entry(recipes).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!RecipesExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
-
+       
         [HttpDelete("{id}")]
         //[Route("deleteRecipes/{id}")]
-        public async Task<IActionResult> DeleteRecipes([FromRoute] int id)
+        public async Task<IActionResult> DeleteRecipes([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
@@ -164,9 +92,69 @@ namespace RecipeApp.Controllers
             return Ok(recipes);
         }
 
-        private bool RecipesExists(int id)
+        private bool RecipesExists(string id)
         {
             return _context.Recipes.Any(e => e.RecipeId == id);
         }
+
+        //[HttpPut("{id}")]
+        ////[Route("updateRecipes/{id}")]
+
+        //public IActionResult UpdateRecipes(int id, [FromBody] Recipes recipes)
+        //{
+        //    var recipe = _context.Recipes.Find(id);
+        //    if (recipe == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    recipe.RecipeId = recipes.RecipeId;
+        //    recipe.RecipeName = recipes.RecipeName;
+        //    recipe.Ingredients = recipes.Ingredients;
+        //    recipe.Steps = recipes.Steps;
+        //    _context.Recipes.Update(recipe);
+        //    _context.SaveChanges();
+        //    return NoContent();
+        //}
+
+        ////public async Task<IActionResult> UpdateRecipes([FromRoute] int id, [FromBody] Recipes recipes)
+        ////{
+        ////    if (!ModelState.IsValid)
+        ////    {
+        ////        return BadRequest(ModelState);
+        ////    }
+
+        ////    if (id != recipes.RecipeId)
+        ////    {
+        ////        return BadRequest();
+        ////    }
+        ////    //var recipe = new Recipes
+        ////    //{
+        ////    //    RecipeId = recipes.RecipeId,
+        ////    //    RecipeName = recipes.RecipeName
+
+        ////    //};
+
+        ////    //_context.Update(recipe);
+        ////    _context.Entry(recipes).State = EntityState.Modified;
+
+        ////    try
+        ////    {
+        ////        await _context.SaveChangesAsync();
+        ////    }
+        ////    catch (DbUpdateConcurrencyException)
+        ////    {
+        ////        if (!RecipesExists(id))
+        ////        {
+        ////            return NotFound();
+        ////        }
+        ////        else
+        ////        {
+        ////            throw;
+        ////        }
+        ////    }
+
+        ////    return NoContent();
+        ////}
+
     }
 }

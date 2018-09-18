@@ -5,8 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20180912042835_second.cs" />
-    <Compile Remove="Migrations\20180912042835_second.Designer.cs" />
+    <Compile Remove="Controllers\RecipeController.cs" />
+    <Compile Remove="Data\ApplicationDbContext.cs" />
+    <Compile Remove="Models\Ingredients.cs" />
+    <Compile Remove="Models\RecipeModel.cs" />
+    <Compile Remove="Models\RecipesDTO.cs" />
+    <Compile Remove="Models\RecipesModel.cs" />
+    <Compile Remove="Models\Recipe_Steps.cs" />
     <Compile Remove="Models\Rec_Ing_Steps.cs" />
   </ItemGroup>
 
@@ -16,7 +21,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="3.0.0" />
   </ItemGroup>

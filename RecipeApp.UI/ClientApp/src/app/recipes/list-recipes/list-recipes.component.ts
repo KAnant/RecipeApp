@@ -11,34 +11,39 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ListRecipesComponent implements OnInit {
 
-  recipes: Recipes[];
+  public recipes: Recipes;
   //public recipes: any;
 
   constructor(private router: Router, private recipeService: RecipesService, private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.recipeService.getRecipes()
-      .subscribe(data => {
-        this.recipes = data;
-      });
+    this.getRecipes();
   }
-
-
-  // btnClick = function () {
-  //   this.router.navigateByUrl('/edit-recipes');
-  // };
-
-  editRecipes(rec: Recipes) {
-    //this.recipeService.selectedRecipe= Object.assign({},rec) ;;
+  public getRecipes() {
+    this.recipeService.getRecipes().subscribe((data => {
+      this.recipes = data;
+      console.log(this.recipes);
+    }));
   }
-
-  deleteRecipes(id: number) {
+  deleteRecipes(id: string) {
     if (confirm('Are you sure to delete this record ?') == true) {
       this.recipeService.deleteRecipes(id)
         .subscribe(data => {
           this.recipeService.getRecipes();
           this.toastr.success("Deleted Successfully");
+          this.ngOnInit();
+          console.log(data);
+          
         })
     }
+  }
+  editRecipes(id: string) {
+    // this.recipeService.updateRecipes(id)
+    // .subscribe(data => {
+    //   this.recipeService.getRecipes();
+    // })
+    localStorage.removeItem("RecipeId")
+    localStorage.setItem("RecipeId", id);
+    this.router.navigate(['edit-recipes']);
   }
 }

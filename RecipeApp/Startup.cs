@@ -23,7 +23,7 @@ namespace RecipeApp
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FoodRecipeDb")));
+            services.AddDbContext<RecipeAppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FoodRecipeDb")));
 
             services.AddCors(options =>
             {

@@ -1,50 +1,29 @@
-<!-- <div class="container">
-  <div class="col-md-6">
-    <h2 class="text-center">Add Recipe</h2>
-    <form [formGroup]="addForm" #formRecipe (ngSubmit)="onSubmit(addForm.value)">
-        <input type="hidden" formControlName="recipeId" placeholder="Recipe Id" name="recipeId" class="form-control" id="recipeId">
-      <div class="form-group">
-        <label for="recipeName">Recipe Name:</label>
-        <input type="recipeName" formControlName="recipeName" placeholder="Recipe Name" name="recipeName" class="form-control" id="recipeName">
-      </div>
-
-      <div class="form-group">
-        <label for="ingredientName">Ingredient Name:</label>
-        <input formControlName="ingredientName" placeholder="Ingredient Name" name="ingredientName" class="form-control" id="ingredientName">
-      </div>
-
-      <div class="form-group">
-        <label for="instructions">Instructions:</label>
-        <input formControlName="instructions" placeholder="Instructions" name="instructions" class="form-control" id="instructions">
-      </div>
-
-      <button class="btn btn-success" type="submit">Add</button>&nbsp;&nbsp;
-      <button type="reset" class="btn btn-default" value="reset">Reset</button>
-    </form>
-  </div>
-</div> -->
 <div class="container">
-<h1>{{title}}</h1>
-<h3>Recipe</h3>
-<hr />
-<form [formGroup]="addForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
-  <div class="form-group row"> <label class=" control-label col-md-12">Recipe Name</label>
-    <div class="col-md-4"> <input class="form-control" type="text" formControlName="recipeName"> </div>
-    <span class="text-danger" *ngIf="recipeName.invalid && formDir.submitted">
-      *
-    </span> </div>
-  <div class="form-group row"> <label class="control-label col-md-12">Ingredient Name</label>
-    <div class="col-md-4"> <input class="form-control" type="text" formControlName="ingredientName"></div> 
-      <span class="text-danger" *ngIf="ingredientName.invalid && formDir.submitted">
-      *
-    </span> </div>
-  <div class="form-group row"> <label class="control-label col-md-12">Instructions</label>
-    <div class="col-md-4"> <input class="form-control" type="text" formControlName="instructions"> </div>
-    <span class="text-danger" *ngIf="instructions.invalid && formDir.submitted">
-      *
-    </span> </div>
-  <div class="form-group"> <button type="submit" class="btn btn-default">Save</button>
-     <button class="btn" (click)="cancel()">Cancel</button>
+  <h2>Recipes</h2>
+
+  <input type="hidden" [(ngModel)]="Recipe.recipeId" name="Recipe.recipeId">
+  <div class="form-group row">
+    <label class=" control-label col-md-12">Recipe Name</label>
+    <div class="col-md-4">
+      <input type="text" [(ngModel)]="Recipe.recipeName" #RecipeCtrl="ngModel" name="Recipe.recipeName" class="form-control">
     </div>
-</form>
+  </div>
+  <div class="form-group row">
+    <label class=" control-label col-md-12">Ingredients Name</label>
+    <div class="col-md-4">
+      <input type="text" [(ngModel)]="Recipe.ingredients" #RecipeCtrl="ngModel" name="Recipe.ingredients" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class=" control-label col-md-12">Recipe Steps</label>
+    <div class="col-md-4">
+      <input type="text" [(ngModel)]="Recipe.steps" #RecipeCtrl="ngModel" name="Recipe.steps" class="form-control">
+    </div>
+  </div>
+
+  <br>
+  <div>
+      <button class="btn btn-default" (click)="onAdd(Recipe)" type="reset">Reset</button>&nbsp;&nbsp;
+    <button class="btn btn-success" (click)="onAdd(Recipe)">Save</button>
+  </div>
 </div>

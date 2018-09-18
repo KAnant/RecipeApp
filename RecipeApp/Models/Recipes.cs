@@ -8,11 +8,13 @@ namespace RecipeApp.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int RecipeId { get; set; }
+        public string RecipeId { get; set; }
 
         public string RecipeName { get; set; }
+        public string Ingredients { get; set; }
+        public string Steps { get; set; }
 
-        public ICollection<Ingredients> Ingredients { get; set; }
-        public ICollection<Recipe_Steps> Recipe_Steps { get; set; }
+        //public ICollection<Ingredients> Ingredients { get; set; }
+        //public ICollection<Recipe_Steps> Recipe_Steps { get; set; }
     }
 }

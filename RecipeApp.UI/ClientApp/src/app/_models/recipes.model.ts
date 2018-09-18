@@ -1,10 +1,8 @@
 export class Recipes {
-    recipeId: number;
+    recipeId: string;
     recipeName: string;
-    ingredientId:number;
-    ingredientName: string;
-    step_no: number;
-    instructions: string;
+    ingredients: string;
+    steps: string;
 }
  
 // export class Ingredients {

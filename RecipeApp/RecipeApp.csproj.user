@@ -12,6 +12,7 @@
     <WebStackScaffolding_DbContextTypeFullName>RecipeApp.Data.ApplicationDbContext</WebStackScaffolding_DbContextTypeFullName>
     <ActiveDebugProfile>IIS Express</ActiveDebugProfile>
     <NameOfLastUsedPublishProfile>RecipeApp01 - Web Deploy</NameOfLastUsedPublishProfile>
+    <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
